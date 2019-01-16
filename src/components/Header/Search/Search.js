@@ -16,12 +16,10 @@ export default class Search extends Component {
   }
 
   updateText( text ) {
-    console.log(this.state.text)
-    this.setState({ text: text });
-  }
-
-  filterPost (text) {
-
+    this.props.filterPostFn(text)
+    this.setState({
+      text: text
+    });
   }
 
   render() {

@@ -18,6 +18,7 @@ class App extends Component {
     this.updatePost = this.updatePost.bind( this );
     this.deletePost = this.deletePost.bind( this );
     this.createPost = this.createPost.bind( this );
+    this.filterPost = this.filterPost.bind( this );
   }
   
   componentDidMount() {
@@ -57,9 +58,22 @@ class App extends Component {
   }
 
   filterPost(text) {
+    text ?
+    axios.get(`https://practiceapi.devmountain.com/api/posts/filter?text=${text}`)
+    .then((res) => {
+      this.setState({
+        posts: res.data
+      })
+    })
+    .catch(() => {
+      
+    })
+    :
     axios.get(`https://practiceapi.devmountain.com/api/posts`)
     .then((res) => {
-      console.log(res)
+      this.setState({
+        posts: res.data
+      })
     })
   }
 
